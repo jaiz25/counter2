@@ -1,10 +1,11 @@
-/*import React, {Component} from 'react';
+import React, {Component} from 'react';
 
 class Counter extends Component {
   constructor() {
     super();
     this.state = {
       count: 0,
+      on: false,
     }
   }
 
@@ -16,10 +17,24 @@ class Counter extends Component {
       })
     }
   }
+  doubleIncrement = () => {
+    if(this.state.count < 20){
+      this.setState ({
+        count: this.state.count + 2,
+      })
+    }
+  }
   decrement = () => {
     if(this.state.count > 0){
       this.setState ({
         count: this.state.count - 1,
+      })
+    }
+  }
+  doubleDecrement = () => {
+    if(this.state.count > 0){
+      this.setState ({
+        count: this.state.count - 2,
       })
     }
   }
@@ -28,75 +43,39 @@ class Counter extends Component {
       count: this.state.count = 0,
     })
   }
-  render(){
-    return(
-      <div className="container">
-        <div className="navbar">Counter</div>
-        <div className="counter">
-          <h1>{this.state.count}</h1>
-          <button type="button" onClick={this.increment}>Increment</button>
-          <button type="button" onClick={this.decrement}>Decrement</button>
-          <button type="button" onClick={this.reset}>Reset</button>
-        </div>
-      </div>
-    )
-  }
-}
-
-export default Counter;*/
-
-import React, {Component} from 'react';
-
-class Counter extends Component {
-  constructor() {
-    super();
-    this.state = {
-      count: 0,
-      toggleOn: true,
-    }
-  }
-
-  //this is where we are going to put our methods
-  increment = () => {
-    if(this.state.count < 20){
-      this.setState ({
-        count: this.state.count + 1,
-      })
-    }
-  }
-  decrement = () => {
-    if(this.state.count > 0){
-      this.setState ({
-        count: this.state.count - 1,
-      })
-    }
-  }
-  clear = () => {
+  toggle = () => {
     this.setState ({
-      count: this.state.count = 0,
-    })
-  }
-  handleclick = () => {
-    this.setState ({
-      toggleOn: !this.state.toggleOn
+      on: !this.state.on,
     })
   }
   render(){
-    return(
-      <div className="container">
-        <div className="navbar">Counter</div>
-        <div className="counter">
-          <h1>{this.state.count}</h1>
-          <button type="button" onClick={this.clear}>Clear</button>
-          <button type="button" onClick={this.increment}>Increment</button>
-          <button type="button" onClick={this.decrement}>Decrement</button>
-          <button type="button" onClick={this.handleClick}>{this.state.toggleOn ? 'Single Count' : 'Double Count'}</button>
-
-
+    if (this.state.on){
+      return(
+        <div className="container">
+          <div className="navbar">Counter</div>
+          <div className="counter">
+            <h1>{this.state.count}</h1>
+            <button type="button" onClick={this.reset}>Clear</button>
+            <button type="button" onClick={this.doubleIncrement}>Increment</button>
+            <button type="button" onClick={this.doubleDecrement}>Decrement</button>
+            <button type="button" onClick={this.toggle}>Double Increment</button>
+          </div>
         </div>
-      </div>
-    )
+      );
+    } else {
+      return(
+        <div className="container">
+          <div className="navbar">Counter</div>
+          <div className="counter">
+            <h1>{this.state.count}</h1>
+            <button type="button" onClick={this.reset}>Clear</button>
+            <button type="button" onClick={this.increment}>Increment</button>
+            <button type="button" onClick={this.decrement}>Decrement</button>
+            <button type="button" onClick={this.toggle}>Single Increment</button>
+          </div>
+        </div>
+      );
+    }
   }
 }
-
 export default Counter;
