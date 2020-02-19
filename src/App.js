@@ -18,7 +18,7 @@ class Counter extends Component {
     }
   }
   doubleIncrement = () => {
-    if(this.state.count < 20){
+    if(this.state.count < 19){
       this.setState ({
         count: this.state.count + 2,
       })
@@ -32,7 +32,7 @@ class Counter extends Component {
     }
   }
   doubleDecrement = () => {
-    if(this.state.count > 0){
+    if(this.state.count > 1){
       this.setState ({
         count: this.state.count - 2,
       })
